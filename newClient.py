@@ -68,7 +68,6 @@ while 1:
                     
                 s.close()
 
-        count = count + 1
         line = ser.readline().decode()
 
         dataArray = re.split("#", str(line))
@@ -107,7 +106,8 @@ while 1:
         file.write("Brightness level: " + str(brightness) + "\n")
         file = open("SamplesFolder/" + file_name + ".txt", "r")
         dataToSend += "Sample datetime:\n" + file_name + "\n" + file.read() + "======\n"
-           
+        
+        count = count + 1
         if count == 10:
             with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 s.connect((HOST, PORT))
